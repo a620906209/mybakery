@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
 
 class menuController extends Controller
 {
@@ -13,7 +14,11 @@ class menuController extends Controller
      */
     public function index()
     {
-        return view('menu');
+
+        $products = Product::all(); 
+ 
+        // return Product::all();
+        return view('menu')->with('products',$products);
     }
 
     /**
@@ -45,7 +50,8 @@ class menuController extends Controller
      */
     public function show($id)
     {
-        //
+
+
     }
 
     /**
