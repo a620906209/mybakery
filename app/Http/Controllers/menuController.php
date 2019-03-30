@@ -14,10 +14,14 @@ class menuController extends Controller
      */
     public function index()
     {
-
         $products = Product::all(); 
- 
+        // $products = Product::where('product_price','=',$id)->first(); 
+        // return Product::where('product_price','=',$id)->get();
+
         // return Product::all();
+        // $result=array($products);
+
+
         return view('menu')->with('products',$products);
     }
 
@@ -50,8 +54,9 @@ class menuController extends Controller
      */
     public function show($id)
     {
-
-
+        $select = Product::where('id','=',$id)->first();
+        $products = array($select);
+        return view('menu')->with('products',$products);
     }
 
     /**

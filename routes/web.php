@@ -34,6 +34,7 @@ Route::post('register', 'Auth\RegisterController@register')->name('register.post
 // Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::get('menu','menuController@index')->name('menu');
+Route::get('menu/{id}','menuController@show')->name('menushow');
 
 
 
