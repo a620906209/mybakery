@@ -9,9 +9,9 @@
 
         <h1 class="my-4">Bakery</h1>
         <div class="list-group">
-          <a href="{{ route('menu') }}/1" class="list-group-item">蛋糕</a>
-          <a href="{{ route('menu') }}/3" class="list-group-item">餅乾</a>
-          <a href="{{ route('menu') }}/2" class="list-group-item">糖果</a>
+          <a href="{{ route('menu') }}/蛋糕" class="list-group-item">蛋糕</a>
+          <a href="{{ route('menu') }}/餅乾" class="list-group-item">餅乾</a>
+          <a href="{{ route('menu') }}/糖果" class="list-group-item">糖果</a>
         </div>
 
       </div>
@@ -20,7 +20,7 @@
       <div class="col-lg-9">
 
         <div class="row">
-          @if (empty($result) >= 1)
+          @if (empty($product) >= 1)
           @foreach($products as $product)
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-90">
@@ -38,12 +38,17 @@
             </div>
           </div>
           @endforeach
+          
           @else
-          <a href="">oops not found!</a>
+            <a>Sorry!
+            it's out of stock today!</a>
           @endif
+        </div>        
+        {{$products -> links()}}
+
+          
 
 
-        </div>
         <!-- /.row -->
 
       </div>

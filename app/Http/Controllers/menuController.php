@@ -14,7 +14,7 @@ class menuController extends Controller
      */
     public function index()
     {
-        $products = Product::all(); 
+        $products = Product::where('id','>=',1)->paginate(9); 
         // $products = Product::where('product_price','=',$id)->first(); 
         // return Product::where('product_price','=',$id)->get();
 
@@ -49,14 +49,24 @@ class menuController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $idate(format)s
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $select = Product::where('id','=',$id)->first();
-        $products = array($select);
-        return view('menu')->with('products',$products);
+        $select = Product::where('product_type','=',$id)->paginate();
+
+        // $num =0;
+        //     foreach ($select as $value) {
+        //         $num = $num + 1;
+        //     };
+        // data={
+        //     $products => $select,
+        //     $count => $num,
+        // }
+
+        return view('menu')->with('products',$select);
+            // return $select;
     }
 
     /**
