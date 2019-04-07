@@ -24,7 +24,7 @@
           <a class="nav-link" href="{{ route('menu') }}">menu</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link " href="#">shoppingCar</a>
+        <a class="nav-link " href="{{ route('shoppingcar') }}">shoppingCar</a>
         </li>
           <li class="nav-item active">
           <a class="nav-link disabled" href="#">aboutUs</a>

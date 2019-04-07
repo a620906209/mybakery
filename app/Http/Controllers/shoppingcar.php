@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Product;
 
-class menuController extends Controller
+class shoppingcar extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,7 @@ class menuController extends Controller
      */
     public function index()
     {
-        $products = Product::where('id','>=',1)->paginate(9); 
-        return view('menu')->with('products',$products);
+        return view('shoppingcar');
     }
 
     /**
@@ -42,14 +40,12 @@ class menuController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $idate(format)s
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $select = Product::where('product_type','=',$id)->paginate(6);
-
-        return view('menu')->with('products',$select);
+        //
     }
 
     /**
