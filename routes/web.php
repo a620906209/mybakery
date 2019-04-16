@@ -35,7 +35,12 @@ Route::post('register', 'Auth\RegisterController@register')->name('register.post
 
 Route::get('menu','menuController@index')->name('menu');
 Route::get('menu/{id}','menuController@show');
-Route::get('shoppingcar','shoppingcar@index')->name('shoppingcar');
+
+Route::get('shoppingcart','shoppingcartController@getCart')->name('shoppingCart');
+// Route::post('submit', 'shoppingcartController@show');
+Route::get('cancel','shoppingcartController@cancelsession')->name('cancel');
+
+Route::get('add-to-cart/{id}', 'shoppingcartController@getAddToCart')->name('product.addcart');
 
 
 

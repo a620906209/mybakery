@@ -21,19 +21,25 @@
         <div class="row">
           @if (empty($product) >= 1)
           @foreach($products as $product)
+          
           <div class="col-lg-4 col-md-6 mb-4">
+          <form action="/submit" method="POST">
+            @csrf
             <div class="card h-90">
               <a href=""><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a>{{ $product->product_name }}</a>
+                  <input type="hidden" name="product_name" value={{ $product->product_name }}>{{ $product->product_name }}
                 </h4>
-                <h5>NT.{{ $product->product_price }}</h5>    
+                <h5><input type="hidden" name="product_price" value={{ $product->product_price }}>NT.{{ $product->product_price }}</h5>    
                 <p class="card-text"></p>
-                <div class="btn btn-primary" >加入購物車</div>
+                <button type="submit" class="btn btn-primary"  >加入購物車</button>
+              <a href="{{route('product.addcart',['id'=>$product->id])}}">add</a>
               </div>
+              </form>
             </div>
           </div>
+          
           @endforeach
           @else
             <a>Sorry!
@@ -58,6 +64,10 @@
     <!-- /.container -->
   </footer>
  --}}
+{{-- <form action="/submit" method="get">
+<input type="hidden" name="name11">name
+<button type="submit" class="btn btn-primary">submit</button>
 
+</form> --}}
 
 @endsection

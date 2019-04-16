@@ -24,7 +24,9 @@
           <a class="nav-link" href="{{ route('menu') }}">menu</a>
         </li>
         <li class="nav-item active">
-        <a class="nav-link " href="{{ route('shoppingcar') }}">shoppingCar</a>
+        <a class="nav-link " href="{{ route('shoppingCart') }}">shoppingCart
+        <span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty : ''}}</span>
+        </a>
         </li>
           <li class="nav-item active">
           <a class="nav-link disabled" href="#">aboutUs</a>
