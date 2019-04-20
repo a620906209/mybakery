@@ -17,12 +17,15 @@
     <tr>
       @if(Session::has('cart'))
         @foreach($products as $product)
+          @if($product['qty']>=1)
           <th scope="row">{{ $product['item']['product_name']}}</th>
             <td>{{ $product['item']['product_price']}}</td>
             <td>{{$product['qty']}}</td>
             <td>{{ $product['item']['product_price'] * $product['qty']}}</td>
-            <td class="btn btn-danger"><a href="{{route('cancel',$product['item']['id'])}}">X</a></td>
+            <td><a class="btn btn-danger" href="{{route('cancel',$product['item']['id'])}}">X</a></td>
+           
           </tr>
+          @endif
         @endforeach
 
   </tbody>

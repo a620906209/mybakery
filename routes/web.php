@@ -36,11 +36,15 @@ Route::post('register', 'Auth\RegisterController@register')->name('register.post
 Route::get('menu','menuController@index')->name('menu');
 Route::get('menu/{id}','menuController@show');
 
-Route::get('shoppingcart','shoppingcartController@getCart')->name('shoppingCart');
+
 // Route::post('submit', 'shoppingcartController@show');
-Route::get('cancel','shoppingcartController@cancelsession')->name('cancel');
+Route::get('cancel/{id}','shoppingcartController@cancelsession')->name('cancel');
 
 Route::get('add-to-cart/{id}', 'shoppingcartController@getAddToCart')->name('product.addcart');
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('shoppingcart', 'shoppingcartController@getCart')->name('shoppingCart');
+});
 
 
 

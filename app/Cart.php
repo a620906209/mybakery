@@ -32,5 +32,23 @@ class Cart
 
     }
 
+    public function cancel($item,$id){
+        $storedItem = ['qty' => 0, 'price' => $item->product_price, 'item' => $item];
+        if ($this->items) {
+            if (array_key_exists($id, $this->items)) {
+                $storedItem = $this->items[$id];
+            }
+        }
 
+        if ($storedItem['qty'] > 0) {
+            $storedItem['qty']--;
+            $storedItem['price'] = $item->product_price * $storedItem['qty'];
+            $this->items[$id] = $storedItem;
+            $this->totalQty--;
+            $this->totalPrice -= $item->product_price;
+        }
+
+
+
+    }
 }

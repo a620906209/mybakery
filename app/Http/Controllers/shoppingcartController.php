@@ -14,11 +14,14 @@ class shoppingcartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-
+    public function __construct()
     {
-        // $products = Product::where('id', '>=', 1)->paginate(3);
-        // return view('shoppingcart')->with( 'products',$products);
+        $this->middleware('auth')->except('index');
+    }
+
+
+    public function index()
+    {  
         return view('shoppingcart');
     }
     
@@ -30,7 +33,9 @@ class shoppingcartController extends Controller
         $cart->add($product,$product->id);
 
         $request->session()->put('cart',$cart);
+
         // dd($request->session()->get('cart'));
+        
         return redirect()->route('menu');
 
     }
@@ -41,12 +46,18 @@ class shoppingcartController extends Controller
         }
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
+        
         return view('shoppingcart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice,'totalQty' =>$cart->totalQty]);
     }
 
-    public function cancelsession(){
-
-        session()->forget('cart');
+    public function cancelsession($id){
+        
+        $product=Product::find($id);
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->cancel($product, $product->id);
+        session()->put('cart', $cart);
+        
         return redirect()->route('shoppingCart');
 
     }

@@ -33,8 +33,7 @@
                 </h4>
                 <h5><input type="hidden" name="product_price" value={{ $product->product_price }}>NT.{{ $product->product_price }}</h5>    
                 <p class="card-text"></p>
-                <button type="submit" class="btn btn-primary"  >加入購物車</button>
-              <a href="{{route('product.addcart',['id'=>$product->id])}}">add</a>
+              <a class="btn btn-primary" href="{{route('product.addcart',['id'=>$product->id])}}">加入購物車</a>
               </div>
               </form>
             </div>
