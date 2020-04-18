@@ -21,11 +21,12 @@
           </form>
         @endauth
         <li class="nav-item active">
-          <a class="nav-link" href="{{ route('menu') }}">menu</a>
+          <a class="nav-link" href="{{ route('formtest') }}">menu</a>
         </li>
         <li class="nav-item active">
-        <a class="nav-link " href="{{ route('shoppingCart') }}">shoppingCart
-        <span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty : ''}}</span>
+        <a class="nav-link " href="{{ route('cart') }}">shoppingCart
+        {{-- <span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty : ''}}</span> --}}
+        <span class="badge">{{ Cart::getContent()->count()}}</span>
         </a>
         </li>
           <li class="nav-item active">

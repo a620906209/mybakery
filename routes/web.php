@@ -14,6 +14,12 @@
 // Route::get('/', function () { 
 //     return view('welcome');
 // });
+Route::get('formtest', 'homeController@formtest')->name('formtest');
+Route::post('add', 'homeController@add');
+Route::get('cart','homeController@cart')->name('cart');
+Route::get('destorycart', 'homeController@destorycart');
+Route::get('form/{id}', 'homeController@cancelitem')->name('formcancel');
+
 
 Route::get('/','bakeryController@home')->name('home');
 // Auth::routes();
@@ -35,6 +41,7 @@ Route::post('register', 'Auth\RegisterController@register')->name('register.post
 
 Route::get('menu','menuController@index')->name('menu');
 Route::get('menu/{id}','menuController@show');
+
 
 
 // Route::post('submit', 'shoppingcartController@show');

@@ -18,40 +18,41 @@
       <!-- /.col-lg-3 -->
            
       <div class="col-lg-9">
-        
-        <div class="row">
+          <div class="row">
           @if (empty($product) >= 1)
           @foreach($products as $product)
-          
-          <div class="col-lg-4 col-md-6 mb-4">
-          <form action="/submit" method="POST">
-            @csrf
+            <div class="col-lg-4 col-md-6 mb-4">
+            {!!Form::open(array('action' => 'homeController@add','method' => 'post'))!!}
             <div class="card h-90">
-              <a href=""><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <input type="hidden" name="product_name" value={{ $product->product_name }}>{{ $product->product_name }}
-                </h4>
-                <h5><input type="hidden" name="product_price" value={{ $product->product_price }}>NT.{{ $product->product_price }}</h5>
-
-                <p class="card-text"></p>
-
-              <a class="btn btn-primary" href="{{route('product.addcart',['id'=>$product->id])}}">加入購物車</a>
-              </div>
-              </form>
-            </div>
-          </div>
-          
-          @endforeach
+                <a href=""><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                  {{Form::label($product->product_name,$product->product_name)}}
+                  {{Form::hidden("product_id",$product->id)}}
+                  {{Form::hidden("product_name",$product->product_name)}}
+                  </h4>
+                  <h5>
+                   NT.{{Form::label($product->product_price,$product->product_price)}}
+                      {{Form::hidden("product_price",$product->product_price)}}
+                  </h5>
+                  <h5>
+                    {!!Form::selectRange('qty', 1, 30);!!}
+                  </h5>
+                <a>{!!Form::submit('加入購物車',['class'=>'btn btn-primary']);!!}</a>
+               </div>
+          </div> 
+          </div>    
+              {!!Form::close()!!}  
+          @endforeach 
           @else
             <a>Sorry!
             it's out of stock today!</a>
-          @endif
-        </div>        
+            @endif      
+          </div>
           {{$products -> links()}}
-      </div>
+        </div>
       <!-- /.col-lg-9 -->
-
+ 
     </div>
     <!-- /.row -->
 

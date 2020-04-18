@@ -30,8 +30,10 @@
 
   </tbody>
 <th colspan="5" class="blockquote text-right">購物車內合計有{{$totalQty}}項商品，總計NT$ {{$totalPrice}}</th>
+
 </table>
 @endif
+<a class="btn btn-primary" href="{{route('home')}}">送出訂單</a>
 
   
 @endsection

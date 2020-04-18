@@ -92,27 +92,7 @@ class shoppingcartController extends Controller
      */
     public function show(Request $request)
     {
-        // $data = $request->input();
-        // if ($request->session()->has('product_name')) {
-        //     $request->session()->push('product',$data);
-        //     $output= $request->session()->get('product');
-        // }else{
-            
-        //     $request->session()->put('product', $data);
-        //     $output=$request->session()->get('product');
-        // }
-        // // if ($output['product_name']=="巧克力蛋糕") {
-        // //     echo "session is here";
-        // //     print_r($output['product_name']);
-        // //     print_r($output['product_price']);
-        // // }else{
-        // //     echo "session is not here";
-        // // }
-        // $data=$request->input();
-
-
-           
-        // return view('shoppingcart')->with('data', $output);
+  
 
     }
 
