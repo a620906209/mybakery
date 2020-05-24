@@ -9,18 +9,23 @@ class Cart
     public $totalQty=0;
     public $totalPrice=0;
     
-    public function __construct($oldCart){
-        if ($oldCart) {
+    public function __construct($oldCart)
+    {
+        if($oldCart)
+        {
             $this->items = $oldCart->items;
             $this->totalQty = $oldCart->totalQty;
             $this->totalPrice = $oldCart->totalPrice;
         }
     }
 
-    public function add($item,$id){
+    public function add($item,$id)
+    {
         $storedItem = ['qty' => 0, 'price'=>$item->product_price, 'item'=>$item];
-        if ($this->items) {
-            if (array_key_exists($id,$this->items)) {
+        if ($this->items)
+        {
+            if (array_key_exists($id,$this->items))
+            {
                 $storedItem = $this->items[$id];
             }
         }
@@ -29,26 +34,25 @@ class Cart
         $this->items[$id] = $storedItem;
         $this->totalQty++;
         $this->totalPrice += $item->product_price;
-
     }
 
     public function cancel($item,$id){
         $storedItem = ['qty' => 0, 'price' => $item->product_price, 'item' => $item];
-        if ($this->items) {
-            if (array_key_exists($id, $this->items)) {
+        if ($this->items) 
+        {
+            if (array_key_exists($id, $this->items))
+            {
                 $storedItem = $this->items[$id];
             }
         }
 
-        if ($storedItem['qty'] > 0) {
+        if ($storedItem['qty'] > 0) 
+        {
             $storedItem['qty']--;
             $storedItem['price'] = $item->product_price * $storedItem['qty'];
             $this->items[$id] = $storedItem;
             $this->totalQty--;
             $this->totalPrice -= $item->product_price;
         }
-
-
-
     }
 }

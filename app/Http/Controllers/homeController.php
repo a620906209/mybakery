@@ -15,26 +15,27 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth')->except('index','show');
     }
-    public function formtest(){
+    public function index()
+    {
         $products = Product::where('id', '>=', 1)->paginate(9);
         return view('formtest')->with('products', $products);
     }
-    public function destorycart(){
-
-            Cart::clear();
-            return redirect('formtest');
+    public function destorycart()
+    {
+        Cart::clear();
+        return redirect('menu');
     }
-    public function cart(){
+    public function cart()
+    {
         $cartCollection = Cart::getContent();
-        
         return view('form',['datas' => $cartCollection]);
     }
-    public function cancelitem($id){
+    public function cancelitem($id)
+    {
         Cart::remove($id);
         return redirect('cart');
-
     }
     public function add(Request $res)
     {
@@ -44,8 +45,9 @@ class HomeController extends Controller
             'price' => $res ->product_price,
             'quantity' => $res->qty
         ]);
-        if ($add) {
-            return redirect('formtest');
+        if ($add)
+        {
+            return redirect('menu');
         }    
     }
 
@@ -55,8 +57,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+
+    public function show($id)
     {
-       return view('index');
+        $select = Product::where('product_type', '=', $id)->paginate(6);
+        return view('formtest')->with('products', $select);
     }
+
 }

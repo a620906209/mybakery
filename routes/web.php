@@ -10,11 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// Route::get('/', function () { 
-//     return view('welcome');
-// });
-Route::get('formtest', 'homeController@formtest')->name('formtest');
+    
+Route::get('menu', 'homeController@index')->name('menu');
+Route::get('menu/{id}', 'homeController@show');
 Route::post('add', 'homeController@add');
 Route::get('cart','homeController@cart')->name('cart');
 Route::get('destorycart', 'homeController@destorycart');
@@ -33,15 +31,8 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout'); //post to 
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register')->name('register.post');
 
-// #忘記密碼
-// Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-// Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-// Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-// Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
-Route::get('menu','menuController@index')->name('menu');
-Route::get('menu/{id}','menuController@show');
-
+// Route::get('menu','menuController@index')->name('menu');
 
 
 // Route::post('submit', 'shoppingcartController@show');

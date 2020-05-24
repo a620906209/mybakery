@@ -1,7 +1,5 @@
 @extends('layouts.main')
 @section('content')
-
-
 <table class="table">
   <thead>
     <tr>
@@ -13,7 +11,6 @@
     </tr>
   </thead>
   <tbody>
-     
     <tr>
       @if(Session::has('cart'))
         @foreach($products as $product)
@@ -23,17 +20,12 @@
             <td>{{$product['qty']}}</td>
             <td>{{ $product['item']['product_price'] * $product['qty']}}</td>
             <td><a class="btn btn-danger" href="{{route('cancel',$product['item']['id'])}}">X</a></td>
-           
           </tr>
           @endif
         @endforeach
-
   </tbody>
-<th colspan="5" class="blockquote text-right">購物車內合計有{{$totalQty}}項商品，總計NT$ {{$totalPrice}}</th>
-
+  <th colspan="5" class="blockquote text-right">購物車內合計有{{$totalQty}}項商品，總計NT$ {{$totalPrice}}</th>
 </table>
-@endif
+      @endif
 <a class="btn btn-primary" href="{{route('home')}}">送出訂單</a>
-
-  
 @endsection

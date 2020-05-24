@@ -16,28 +16,22 @@ class shoppingcartController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except('index');
+        // $this->middleware('auth')->except('index');
     }
-
-
     public function index()
     {  
         return view('shoppingcart');
     }
     
 
-    public function getAddToCart(Request $request,$id){
+    public function getAddToCart(Request $request,$id)
+    {
         $product = Product::find($id);
         $oldCart = Session::has('cart')? Session::get('cart') : null;
         $cart = new Cart($oldCart);
         $cart->add($product,$product->id);
-
-        $request->session()->put('cart',$cart);
-
-        // dd($request->session()->get('cart'));
-        
-        return redirect()->route('menu');
-
+        $request->session()->put('cart',$cart);        
+            return redirect()->route('menu');
     }
     public function getCart()
     {
@@ -47,19 +41,16 @@ class shoppingcartController extends Controller
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
         
-        return view('shoppingcart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice,'totalQty' =>$cart->totalQty]);
+            return view('shoppingcart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice,'totalQty' =>$cart->totalQty]);
     }
-
-    public function cancelsession($id){
-        
+    public function cancelsession($id)
+    {   
         $product=Product::find($id);
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
         $cart->cancel($product, $product->id);
         session()->put('cart', $cart);
-        
         return redirect()->route('shoppingCart');
-
     }
 
 
